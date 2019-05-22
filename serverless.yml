@@ -1,0 +1,18 @@
+service: test-lambda-exception-handling
+
+provider:
+  name: aws
+  runtime: python3.7
+  region: ${AWS_REGION, 'us-east-2'}
+
+  stage: dev
+
+functions:
+  throw_error:
+    handler: handler.throw_error
+    events:
+      - http:
+          path: throw
+          method: post
+          cors: true
+
